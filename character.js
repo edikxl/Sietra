@@ -230,72 +230,66 @@ var stepPlayer = function(){
 			stopTimer = 2;
 		}
 	}else if(step > 0){
-		if(!(checkBlock("block",xCanvasBlock,yCanvasBlock))){
-			//Перехватываю возможность входа в камень
-		}else if(!(checkBlock("enemy",xCanvasBlock,yCanvasBlock))){
-			//Перехватываю возможность входа во врага
-		}else if((yCanvasBlock == yHero) && (xCanvasBlock == xHero)){
-			//Перехватываю возможность идти по не по горизонтали и вертикали
-		}else if(yCanvasBlock == yHero){
+		if(yCanvasBlock == yHero){
 			if(xCanvasBlock > xHero){
-				if(maxStep == 3){
-					if(checkBlock("enemy",xCanvasBlock - 1,yCanvasBlock) && checkBlock("block",xCanvasBlock - 1,yCanvasBlock)){
-						if(checkBlock("enemy",xCanvasBlock - 2,yCanvasBlock) && checkBlock("block",xCanvasBlock - 2,yCanvasBlock)){
-							if(checkBlock("enemy",xCanvasBlock - 3,yCanvasBlock) && checkBlock("block",xCanvasBlock - 3,yCanvasBlock)){
-								nowStep = xCanvasBlock - xHero;
-								if(nowStep <= 3){
-									step -= nowStep;
-									updateMap("1_1",xHero + nowStep,yHero);
-									updateMap("3",xOldHero,yOldHero);
-								}
+				nowStep = xCanvasBlock - xHero;
+				if(nowStep <= step){
+					for(var i = 0;i != nowStep;i++){
+						if(checkBlock("enemy",xHero + 1,yCanvasBlock) && checkBlock("block",xHero + 1,yCanvasBlock)){
+							if(hero == warrior){
+								updateMap("1_1",xHero + 1,yHero);
+								updateMap("3",xOldHero,yOldHero);
+								step -= 1;
 							}
+						}else{
+							return;
 						}
 					}
 				}
 			}else if(xCanvasBlock < xHero){
-				if(maxStep == 3){
-					if(checkBlock("enemy",xCanvasBlock + 1,yCanvasBlock) && checkBlock("block",xCanvasBlock + 1,yCanvasBlock)){
-						if(checkBlock("enemy",xCanvasBlock + 2,yCanvasBlock) && checkBlock("block",xCanvasBlock + 2,yCanvasBlock)){
-							if(checkBlock("enemy",xCanvasBlock + 3,yCanvasBlock) && checkBlock("block",xCanvasBlock + 3,yCanvasBlock)){
-								nowStep = xHero - xCanvasBlock;
-								if(nowStep <= 3){
-									step -= nowStep;
-									updateMap("1_1",xHero - nowStep,yHero);
-									updateMap("3",xOldHero,yOldHero);
-								}
+				nowStep = xHero - xCanvasBlock;
+				if(nowStep <= step){
+					for(var i = 0;i != nowStep;i++){
+						if(checkBlock("enemy",xHero - 1,yCanvasBlock) && checkBlock("block",xHero - 1,yCanvasBlock)){
+							if(hero == warrior){
+								updateMap("1_1",xHero - 1,yHero);
+								updateMap("3",xOldHero,yOldHero);
+								step -= 1;
 							}
+						}else{
+							return;
 						}
 					}
 				}
 			}
 		}else if(xCanvasBlock == xHero){
 			if(yCanvasBlock > yHero){
-				if(maxStep == 3){
-					if(checkBlock("enemy",xCanvasBlock,yCanvasBlock - 1) && checkBlock("block",xCanvasBlock,yCanvasBlock - 1)){
-						if(checkBlock("enemy",xCanvasBlock,yCanvasBlock - 2) && checkBlock("block",xCanvasBlock,yCanvasBlock - 2)){
-							if(checkBlock("enemy",xCanvasBlock,yCanvasBlock - 3) && checkBlock("block",xCanvasBlock,yCanvasBlock - 3)){
-								nowStep = yCanvasBlock - yHero;
-								if(nowStep <= 3){
-									step -= nowStep;
-									updateMap("1_1",xHero,yHero + nowStep);
-									updateMap("3",xOldHero,yOldHero);
-								}
+				nowStep = yCanvasBlock - yHero;
+				if(nowStep <= step){
+					for(var i = 0;i != nowStep;i++){
+						if(checkBlock("enemy",xCanvasBlock,yHero + 1) && checkBlock("block",xCanvasBlock,yHero + 1)){
+							if(hero == warrior){
+								updateMap("1_1",xHero,yHero + 1);
+								updateMap("3",xOldHero,yOldHero);
+								step -= 1;
 							}
+						}else{
+							return;
 						}
 					}
 				}
 			}else if(yCanvasBlock < yHero){
-				if(maxStep == 3){
-					if(checkBlock("enemy",xCanvasBlock,yCanvasBlock + 1) && checkBlock("block",xCanvasBlock,yCanvasBlock + 1)){
-						if(checkBlock("enemy",xCanvasBlock,yCanvasBlock + 2) && checkBlock("block",xCanvasBlock,yCanvasBlock + 2)){
-							if(checkBlock("enemy",xCanvasBlock,yCanvasBlock + 3) && checkBlock("block",xCanvasBlock,yCanvasBlock + 3)){
-								nowStep = yHero - yCanvasBlock;
-								if(nowStep <= 3){
-									step -= nowStep;
-									updateMap("1_1",xHero,yHero - nowStep);
-									updateMap("3",xOldHero,yOldHero);
-								}
+				nowStep = yHero - yCanvasBlock;
+				if(nowStep <= step){
+					for(var i = 0;i != nowStep;i++){
+						if(checkBlock("enemy",xCanvasBlock,yHero - 1) && checkBlock("block",xCanvasBlock,yHero - 1)){
+							if(hero == warrior){
+								updateMap("1_1",xHero,yHero - 1);
+								updateMap("3",xOldHero,yOldHero);
+								step -= 1;
 							}
+						}else{
+							return;
 						}
 					}
 				}
