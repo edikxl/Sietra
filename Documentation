@@ -1,0 +1,28 @@
+                                        Documentation
+Total:
+  Number of type object:
+	1.Hero and teammate:
+		1_1.Warrior
+			1_1_1.Sword attack
+	2.Enemy:
+		2_1.Dog
+			2_1_1.Paw attack
+	3.Area object:
+		3.Grass
+		3_1.Stone
+		3_2.Blue Grass(Field start)
+		3_3.Red Grass(Field with the enemy)
+	Name of type`s of timer:
+		"start"- the timer of the first move in the game(placing characters on the field)
+		"player"- the timer of the player
+		"enemy"- the timer of the enemy
+	Name of stop timer:
+		0.Standart
+		1.Stop timer "start"
+		2.Stop timer "player"
+		3.Stop timer "enemy"
+	Type of check block:
+		"block" - check on the block
+		"player" - check on the player
+		"enemy" - check on the enemy
+P.S.To transfer all the data as a string
