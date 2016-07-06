@@ -1,0 +1,20 @@
+body{
+	width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    overflow: auto;
+	background: url("image/bg.png") repeat;
+}
+p{
+    color: white;
+    font-size: 50;
+    margin-bottom: 0px;
+}
+#rebut{
+    position: absolute;
+}
