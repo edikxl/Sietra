@@ -2,6 +2,8 @@ var variable = function(){
 	//Canvas
 	canvas = null;
 	ctx = null;
+	//Язык
+	lang = "EN";
 	//Статусы игры
 	stateGame = false;
 	stateChoosePos = false;

@@ -1,6 +1,9 @@
 var loadImage = function(){
-	startImage = new Image();
-	startImage.src = ("image/game/interface/startImage.png");
+	startImageRU = new Image();
+	startImageRU.src = ("image/game/interface/startImageRU.png");
+
+	startImageEN = new Image();
+	startImageEN.src = ("image/game/interface/startImageEN.png");
 
 	interface = new Image();
 	interface.src = ("image/game/interface/interface.png");
@@ -38,9 +41,15 @@ var loadImage = function(){
 	dogAttack = new Image();
 	dogAttack.src = ("image/game/enemy/dogAttack.png");
 
-	win = new Image();
-	win.src = ("image/game/win.png");
+	winRU = new Image();
+	winRU.src = ("image/game/winRU.png");
 
-	lose = new Image();
-	lose.src = ("image/game/lose.png");
+	winEN = new Image();
+	winEN.src = ("image/game/winEN.png");
+
+	loseRU = new Image();
+	loseRU.src = ("image/game/loseRU.png");
+
+	loseEN = new Image();
+	loseEN.src = ("image/game/loseEN.png");
 }

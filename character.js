@@ -191,7 +191,11 @@ var hpUpdate = function(){
 	if(hp <= 0){
 		stopTimer = 4;
 		stateLife = false;
-		ctx.drawImage(lose,0,0);
+		if(lang == "RU"){
+			ctx.drawImage(loseRU,0,0);
+		}else if(lang == "EN"){
+			ctx.drawImage(loseEN,0,0);
+		}
 	}
 }
 var manaUpdate = function(){

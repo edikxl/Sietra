@@ -30,7 +30,11 @@ var checkState = function(){
 	}
 	if(enemyDeath == enemyCol){
 		stopTimer = 4;
-		ctx.drawImage(win,0,0);
+		if(lang == "RU"){
+			ctx.drawImage(winRU,0,0);
+		}else if(lang == "EN"){
+			ctx.drawImage(winEN,0,0);
+		}
 	}
 }
 var checkEnemyHP = function(){
@@ -306,6 +310,14 @@ canvas.onclick = function(e){
 			if((yCanvas > 200) && (yCanvas < 300)){
 				startGame();
 				xCanvas = null;
+			}
+		}else if(xCanvas > 5 && xCanvas < 95){
+			if(yCanvas > 5 && yCanvas < 45){
+				lang = "EN";
+				startMenu();
+			}else if(yCanvas > 50 && yCanvas < 90){
+				lang = "RU";
+				startMenu();
 			}
 		}
 	}else if(stateGame){

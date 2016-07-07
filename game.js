@@ -15,7 +15,11 @@ window.requestAnimFrame = (function(){
 var startMenu = function(){
 	document.getElementById("rebut").style.display = 'none';
 	stateMenu = true;
-	ctx.drawImage(startImage,0,0);
+	if(lang == "RU"){
+		ctx.drawImage(startImageRU,0,0);
+	}else if(lang == "EN"){
+		ctx.drawImage(startImageEN,0,0);
+	}
 }
 //Старт игры
 var startGame = function(){
