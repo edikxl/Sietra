@@ -90,7 +90,7 @@ var updateMap = function(num,x,y){
 		type = warrior;
 	}else if(num == "1_1_1"){
 		type = warriorSkill1;
-	}else if(num == "2_1"){//Чини!
+	}else if(num == "2_1"){
 		type = dog;
 	}else if(num == "3"){
 		type = grass;
@@ -102,12 +102,6 @@ var updateMap = function(num,x,y){
 		type = redGrass;
 	}
 	ctx.drawImage(type,(x-1)*64,(y-1)*64);
-}
-var stepUpdate = function(){
-	ctx.fillStyle = ("black");
-	ctx.fillRect(643,514,75,56);
-	ctx.fillStyle = ("white");
-	ctx.fillText(step + "/"+ maxStep,665,540);
 }
 var drawInterface = function(){
 	ctx.drawImage(interface,0,448);
@@ -324,6 +318,11 @@ canvas.onclick = function(e){
 		if(stateChoosePos){//Ход игрока
 			if(!stateChooseStart){//Не первый ход
 				if(stateMove){
+					if(xCanvasBlock == 8){
+						if(yCanvasBlock == 1){
+							stopTimer = 2;
+						}
+					}
 					stepPlayer();
 				}else if(stateAttack){
 					if(nowSkill == 1){

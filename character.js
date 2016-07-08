@@ -13,6 +13,7 @@ var damageXYEnemy = function(x,y,id){
 					if(enemyList[i].hp <= 0){
 						if(enemyList[i].type == "2_1"){
 							xp += 25;
+							money += 20;
 						}
 						enemyList[i].status = false;
 						enemyDeath += 1;
@@ -228,18 +229,44 @@ var xpUpdate = function(){
 	ctx.fillStyle = ("white");
 	ctx.fillText(xp + "/"+ maxXP,440,560);
 }
+var moneyUpdate = function(){
+	ctx.fillStyle = ("black");
+	ctx.fillRect(642,454,75,56);
+	ctx.fillStyle = ("green");
+	if(money >= 0 && money <= 9){
+		ctx.font = ("35px Verdana, sans-serif");
+		ctx.fillText(money + "$",658,490);
+	}else if(money >= 10 && money <= 99){
+		ctx.font = ("30px Verdana, sans-serif");
+		ctx.fillText(money + "$",650,490);
+	}else if(money >= 100 && money <= 999){
+		ctx.font = ("25px Verdana, sans-serif");
+		ctx.fillText(money + "$",645,490);
+	}else if(money >= 1000 && money <= 9999){
+		ctx.font = ("20px Verdana, sans-serif");
+		ctx.fillText(money + "$",645,490);
+	}else if(money >= 10000 && money <= 99999){
+		ctx.font = ("18px Verdana, sans-serif");
+		ctx.fillText(money + "$",645,490);
+	}else if(money >= 100000){
+		ctx.font = ("15px Verdana, sans-serif");
+		ctx.fillText(money + "$",645,490);
+	}
+}
+var stepUpdate = function(){
+	ctx.fillStyle = ("black");
+	ctx.fillRect(643,514,75,56);
+	ctx.fillStyle = ("white");
+	ctx.fillText(step + "/"+ maxStep,665,540);
+}
 var stepPlayer = function(){
-	if(xCanvasBlock == 8){
-		if(yCanvasBlock == 1){
-			stopTimer = 2;
-		}
-	}else if(step > 0){
+	if(step > 0){
 		if(yCanvasBlock == yHero){
 			if(xCanvasBlock > xHero){
 				nowStep = xCanvasBlock - xHero;
 				if(nowStep <= step){
-					for(var i = 0;i != nowStep;i++){
-						if(checkBlock("enemy",xHero + 1,yCanvasBlock) && checkBlock("block",xHero + 1,yCanvasBlock)){
+					for(var t = 0;t != nowStep;t++){
+						if(checkBlock("enemy",xHero + 1,yHero) && checkBlock("block",xHero + 1,yHero)){
 							if(hero == warrior){
 								updateMap("1_1",xHero + 1,yHero);
 								updateMap("3",xOldHero,yOldHero);
@@ -253,8 +280,8 @@ var stepPlayer = function(){
 			}else if(xCanvasBlock < xHero){
 				nowStep = xHero - xCanvasBlock;
 				if(nowStep <= step){
-					for(var i = 0;i != nowStep;i++){
-						if(checkBlock("enemy",xHero - 1,yCanvasBlock) && checkBlock("block",xHero - 1,yCanvasBlock)){
+					for(var t = 0;t != nowStep;t++){
+						if(checkBlock("enemy",xHero - 1,yHero) && checkBlock("block",xHero - 1,yHero)){
 							if(hero == warrior){
 								updateMap("1_1",xHero - 1,yHero);
 								updateMap("3",xOldHero,yOldHero);
@@ -270,8 +297,8 @@ var stepPlayer = function(){
 			if(yCanvasBlock > yHero){
 				nowStep = yCanvasBlock - yHero;
 				if(nowStep <= step){
-					for(var i = 0;i != nowStep;i++){
-						if(checkBlock("enemy",xCanvasBlock,yHero + 1) && checkBlock("block",xCanvasBlock,yHero + 1)){
+					for(var t = 0;t != nowStep;t++){
+						if(checkBlock("enemy",xHero,yHero + 1) && checkBlock("block",xHero,yHero + 1)){
 							if(hero == warrior){
 								updateMap("1_1",xHero,yHero + 1);
 								updateMap("3",xOldHero,yOldHero);
@@ -285,8 +312,8 @@ var stepPlayer = function(){
 			}else if(yCanvasBlock < yHero){
 				nowStep = yHero - yCanvasBlock;
 				if(nowStep <= step){
-					for(var i = 0;i != nowStep;i++){
-						if(checkBlock("enemy",xCanvasBlock,yHero - 1) && checkBlock("block",xCanvasBlock,yHero - 1)){
+					for(var t = 0;t != nowStep;t++){
+						if(checkBlock("enemy",xHero,yHero - 1) && checkBlock("block",xHero,yHero - 1)){
 							if(hero == warrior){
 								updateMap("1_1",xHero,yHero - 1);
 								updateMap("3",xOldHero,yOldHero);

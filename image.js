@@ -52,4 +52,6 @@ var loadImage = function(){
 
 	loseEN = new Image();
 	loseEN.src = ("image/game/loseEN.png");
+
+	variable();
 }
