@@ -10,11 +10,6 @@ body{
     overflow: auto;
 	background: url("image/bg.png") repeat;
 }
-p{
-    color: white;
-    font-size: 50;
-    margin-bottom: 0px;
-}
 #button {
     display: inline-block;
     color: white;

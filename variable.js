@@ -1,11 +1,16 @@
 var variable = function(){
-	//Canvas
-	canvas = null;
-	ctx = null;
+	//Audio
+	audioTheme = loadAudio("music/menuTheme.mp3");
+	audioWarrior1 = loadAudio("music/warrior/skill1.mp3");
 	//Язык
 	lang = "EN";
 	//Статусы игры
 	stateGame = false;
+	stateInfo = false;
+	stateTutorial = false;
+	stateInventory = false;
+	stateInterface = false;
+	stateSettings = false;
 	stateChoosePos = false;
 	stateChooseStart = false;
 	stateEnemyStep = false;
@@ -15,6 +20,7 @@ var variable = function(){
 	stateAttack = false;
 	stateReadyAttack = false;
 	stateLife = false;
+	stateTheme = false;
     //Координаты
 	xCanvas = null;
 	yCanvas = null;
@@ -72,17 +78,19 @@ var variable = function(){
 	//Враги
 	enemyCol = 0;
 	enemyStep = 0;
+	enemyStepCol = null;
 	enemyId = 0;
-	enemyStepId = 0;
 	enemyDeath = 0;
+	enemyTime = 0;
 	//Прочее
+	slide = 0;
+	volumeTheme = true;
 	nowSkill = 0;
 	r = 0;
 	fullArea = false;
 	hero = warrior;
 
 	enemyList = [];
-	enemyStepList = [];
 
 	mapArea = [
 		["3","3","3","3","3","3","3","3_1","3","3","3","3","3","3","3"],
@@ -93,5 +101,6 @@ var variable = function(){
 		["3","3","3","3","3","3","3","3","3","3","3","3","3","3","3"],
 		["3","3","3","3","3","3","3","3","3","3","3","3","3","3","3"]
 	];
+	loadScale();
 	init();
 }

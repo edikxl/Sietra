@@ -9,6 +9,7 @@ var damageXYEnemy = function(x,y,id){
 		if(id == 1){
 			for(var i = 1;i < enemyList.length;i ++){
 				if(enemyList[i].x == xAttack && enemyList[i].y == yAttack){
+					audioWarrior1.play();
 					enemyList[i].hp -= 15;
 					if(enemyList[i].hp <= 0){
 						if(enemyList[i].type == "2_1"){
@@ -189,15 +190,6 @@ var hpUpdate = function(){
 	ctx.font = ("20px Verdana, sans-serif");
 	ctx.fillStyle = ("white");
 	ctx.fillText(hp + "/"+ maxHP,440,480);
-	if(hp <= 0){
-		stopTimer = 4;
-		stateLife = false;
-		if(lang == "RU"){
-			ctx.drawImage(loseRU,0,0);
-		}else if(lang == "EN"){
-			ctx.drawImage(loseEN,0,0);
-		}
-	}
 }
 var manaUpdate = function(){
 	if(mana >= 0){
@@ -328,3 +320,4 @@ var stepPlayer = function(){
 		}
 	}
 }
+loadScale();

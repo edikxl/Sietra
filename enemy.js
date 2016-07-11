@@ -43,6 +43,25 @@ var damageHero = function(dHP,dMana,enemy){
 		hp -= dHP;
 	}
 }
+var stepEnemyBase = function(i,set){
+	if(set == "y-"){
+		updateMap("(3)",enemyList[i].x,enemyList[i].y);
+		enemyList[i].y -= 1;
+		updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+	}else if(set == "y+"){
+		updateMap("(3)",enemyList[i].x,enemyList[i].y);
+		enemyList[i].y += 1;
+		updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+	}else if(set == "x-"){
+		updateMap("(3)",enemyList[i].x,enemyList[i].y);
+		enemyList[i].x -= 1;
+		updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+	}else if(set == "x+"){
+		updateMap("(3)",enemyList[i].x,enemyList[i].y);
+		enemyList[i].x += 1;
+		updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+	}
+}
 var stepEnemy = function(){
 	for(var i = 1;i < enemyList.length;i ++){
 		if(enemyList[i].status){
@@ -53,17 +72,11 @@ var stepEnemy = function(){
 					if(yHero < enemyList[i].y){
 						if(checkBlock("player",enemyList[i].x,enemyList[i].y - 1)){
 							if(checkBlock("block",enemyList[i].x,enemyList[i].y - 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y - 1)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].y -= 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"y-");
 							}else if(checkBlock("block",enemyList[i].x + 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x + 1,enemyList[i].y)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].x += 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"x+");
 							}else if(checkBlock("block",enemyList[i].x - 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x - 1,enemyList[i].y)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].x -= 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"x-");
 							}
 						}else{
 							damageHero(10,50,i);
@@ -71,17 +84,11 @@ var stepEnemy = function(){
 					}else if(yHero > enemyList[i].y){
 						if(checkBlock("player",enemyList[i].x,enemyList[i].y + 1)){
 							if(checkBlock("block",enemyList[i].x,enemyList[i].y + 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y + 1)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].y += 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"y+");
 							}else if(checkBlock("block",enemyList[i].x + 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x + 1,enemyList[i].y)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].x += 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"x+");
 							}else if(checkBlock("block",enemyList[i].x - 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x - 1,enemyList[i].y)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].x -= 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"x-");
 							}
 						}else{
 							damageHero(10,50,i);
@@ -91,17 +98,11 @@ var stepEnemy = function(){
 					if(xHero < enemyList[i].x){
 						if(checkBlock("player",enemyList[i].x - 1,enemyList[i].y)){
 							if(checkBlock("block",enemyList[i].x - 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x - 1,enemyList[i].y)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].x -= 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"x-");
 							}else if(checkBlock("block",enemyList[i].x,enemyList[i].y + 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y + 1)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].y += 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"y+");
 							}else if(checkBlock("block",enemyList[i].x,enemyList[i].y - 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y - 1)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].y -= 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"y-");
 							}
 						}else{
 							damageHero(10,50,i);
@@ -109,17 +110,11 @@ var stepEnemy = function(){
 					}else if(xHero > enemyList[i].x){
 						if(checkBlock("player",enemyList[i].x + 1,enemyList[i].y)){
 							if(checkBlock("block",enemyList[i].x + 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x - 1,enemyList[i].y)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].x += 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"x+");
 							}else if(checkBlock("block",enemyList[i].x,enemyList[i].y + 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y + 1)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].y += 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"y+");
 							}else if(checkBlock("block",enemyList[i].x,enemyList[i].y - 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y - 1)){
-								updateMap("3",enemyList[i].x,enemyList[i].y);
-								enemyList[i].y -= 1;
-								updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+								stepEnemyBase(i,"y-");
 							}
 						}else{
 							damageHero(10,50,i);
@@ -127,69 +122,46 @@ var stepEnemy = function(){
 					}
 				}else if(xHero > enemyList[i].x){//x +
 					if(checkBlock("block",enemyList[i].x + 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x + 1,enemyList[i].y)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].x += 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"x+");
 					}else if(checkBlock("block",enemyList[i].x,enemyList[i].y + 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y + 1)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].y += 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"y+");
 					}else if(checkBlock("block",enemyList[i].x,enemyList[i].y - 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y - 1)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].y -= 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"y-");
 					}
 				}else if(xHero < enemyList[i].x){//x -
 					if(checkBlock("block",enemyList[i].x - 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x - 1,enemyList[i].y)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].x -= 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"x-");
 					}else if(checkBlock("block",enemyList[i].x,enemyList[i].y + 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y + 1)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].y += 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"y+");
 					}else if(checkBlock("block",enemyList[i].x,enemyList[i].y - 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y - 1)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].y -= 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"y-");
 					}
 				}else if(yHero > enemyList[i].y){//y -
 					if(checkBlock("block",enemyList[i].x,enemyList[i].y - 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y - 1)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].y -= 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"y-");
 					}else if(checkBlock("block",enemyList[i].x + 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x + 1,enemyList[i].y)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].x += 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"x+");
 					}else if(checkBlock("block",enemyList[i].x - 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x - 1,enemyList[i].y)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].x -= 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"x-");
 					}
 				}else if(yHero < enemyList[i].y){//y +
 					if(checkBlock("block",enemyList[i].x,enemyList[i].y + 1) && checkBlock("enemy",enemyList[i].x,enemyList[i].y + 1)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].y += 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"y+");
 					}else if(checkBlock("block",enemyList[i].x + 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x + 1,enemyList[i].y)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].x += 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"x+");
 					}else if(checkBlock("block",enemyList[i].x - 1,enemyList[i].y) && checkBlock("enemy",enemyList[i].x - 1,enemyList[i].y)){
-						updateMap("3",enemyList[i].x,enemyList[i].y);
-						enemyList[i].x -= 1;
-						updateMap(enemyList[i].type,enemyList[i].x,enemyList[i].y);
+						stepEnemyBase(i,"x-");
 					}
 				}else{
 					console.log("Вы в другом пространстве!");
 				}
 			}
 			enemyStep = 0;
-			stopTimer = 3;
+			enemyStepCol += 1;
 		}else{
 			enemyStep = 0;
-			stopTimer = 3;
+			enemyStepCol += 1;
 		}
 	}
 }
+loadScale();

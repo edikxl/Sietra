@@ -8,13 +8,39 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<button onclick="loadImage();" id="button">Start game</button>
 		<canvas width="960" height="576" id="canvas" style="z-index: 0;"></canvas>
+		<script>
+			var scale = 0;
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');
+			var loadScale = function(){
+				scale += 50;
+				ctx.fillStyle = ("white");
+				ctx.fillRect(0,0,960,576);
+				ctx.fillStyle = ("grey");
+				ctx.fillRect(280,273,400,31);
+				ctx.fillStyle = ("black");
+				ctx.fillRect(280,273,scale,31);
+				ctx.fillStyle = ("grey");
+				ctx.font = ("20px Verdana, sans-serif");
+				ctx.fillText("Loading...",450,295);
+				if(scale == 400){
+					window.onload = function(){
+						startMenu();
+					}
+				}
+			}
+			loadScale();
+			loadScale();
+		</script>
 		<script src="image.js"></script>
 		<script src="variable.js"></script>
 		<script src="engine.js"></script>
 		<script src="character.js"></script>
 		<script src="enemy.js"></script>
 		<script src="game.js"></script>
+		<script>
+			loadImage();
+		</script>
 	</body>
 </html>
